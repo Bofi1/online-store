@@ -1,16 +1,23 @@
-alert()
 
-let cartButton = document.getElementById("cart-button")
-let cartStatus = true
-cartButton.addEventListener("click", cartDisplay)
-console.log(cartButton);
+let cartContainer = document.getElementById("cartContainer")
+let cartHiddenButton = document.getElementById("close-cart-icon")
+let cartVisibleButton = document.getElementById("header-cart-icon")
+// let cartStatus = true
 
-function cartDisplay() {
-    if (cartStatus) {
-        alert('esconder')
-        cartStatus = false
-    } else {
-        alert('mostrar')
-        cartStatus = true
-    }
+cartHiddenButton.addEventListener("click", cartHidden)
+cartVisibleButton.addEventListener("click", cartVisible)
+
+
+function cartHidden() {
+    cartContainer.style.display = "absolute"
+    cartContainer.style.transition = "ease 0.7s"
+    cartContainer.style.right = "-1000px"
 }
+
+function cartVisible() {
+    cartContainer.style.display = "absolute"
+    cartContainer.style.transition = "ease 0.7s"
+    cartContainer.style.right = "0px"
+}
+
+
