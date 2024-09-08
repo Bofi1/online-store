@@ -5,6 +5,8 @@
     background: gray;
     display: flex;
     align-items: center;
+    position: fixed;
+    z-index: 1;
 }
 
 .header .header-cart-icon{

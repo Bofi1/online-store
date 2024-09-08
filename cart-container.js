@@ -10,13 +10,13 @@ cartVisibleButton.addEventListener("click", cartVisible)
 
 function cartHidden() {
     cartContainer.style.display = "absolute"
-    cartContainer.style.transition = "ease 0.7s"
+    cartContainer.style.transition = "ease 0.3s"
     cartContainer.style.right = "-1000px"
 }
 
 function cartVisible() {
     cartContainer.style.display = "absolute"
-    cartContainer.style.transition = "ease 0.7s"
+    cartContainer.style.transition = "ease 0.3s"
     cartContainer.style.right = "0px"
 }
 
