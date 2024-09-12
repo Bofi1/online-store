@@ -37,6 +37,12 @@ for (let i = 0; i < productAddCartButton.length; i++) {
 }
 // ---------------------
 
+
+
+
+
+
+
 // --- funciones cuando se presione el boton del elemento(.productItem)
 function addToCart(event) {
     let button = event.target
@@ -60,6 +66,9 @@ function addToCart(event) {
 }
 // ---------
 
+
+
+
 // ---- añadimos el producto(.product-item) al carrito(.cart-items-container) como item(.cart-item)
 function addCartDiv(img,tittle,price) {
     if (isItemOnFile == false) {
@@ -82,6 +91,10 @@ function addCartDiv(img,tittle,price) {
 }
 // --------
 
+
+
+
+
 // ---- comprobar que .cart-item no se repita
 let isItemOnFile = false
 function ItemOnFile(tittle) {
@@ -97,15 +110,6 @@ function ItemOnFile(tittle) {
 }
 // -------
 
-function cartUpdate() {
-
-    for (let i = 0; i < cartItem.length; i++) {
-
-        minusItem[i].addEventListener("click",()=>{alert("minus")})
-
-        plusItem[i].addEventListener("click",()=>{alert("plus")})
-    }
-}
 
 
 
