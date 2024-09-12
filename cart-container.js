@@ -53,9 +53,7 @@ function addToCart(event) {
     addCartDiv(img,tittle,price)
 
     cartVisible()
-
-    cartUpdate()
-    
+       
 }
 // ---------
 
@@ -102,19 +100,15 @@ function ItemOnFile(tittle) {
 
 function cartUpdate() {
 
-    let cartItem = document.getElementsByClassName("cart-item")
-    let minusItem = document.getElementsByClassName("minus")
-    let plusItem = document.getElementsByClassName("plus")
-
     for (let i = 0; i < cartItem.length; i++) {
-        
 
-        minusItem[i].addEventListener("click",() => {alert("plus")})
-        plusItem[i].addEventListener("click",() => {alert("plus")})
+        minusItem[i].addEventListener("click",()=>{alert("minus")})
+
+        plusItem[i].addEventListener("click",()=>{alert("plus")})
     }
-
-    
 }
+
+
 
 
 
