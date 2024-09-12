@@ -23,6 +23,11 @@ function cartVisible() {
 //  ----------------
 
 
+
+
+
+
+
 //---- le damos funcionalidad al boton .product-addCartButton
 let productAddCartButton = document.getElementsByClassName("product-addCartButton")
 
@@ -31,8 +36,6 @@ for (let i = 0; i < productAddCartButton.length; i++) {
     button.addEventListener("click", addToCart)
 }
 // ---------------------
-
-
 
 // --- funciones cuando se presione el boton del elemento(.productItem)
 function addToCart(event) {
@@ -57,8 +60,6 @@ function addToCart(event) {
 }
 // ---------
 
-
-
 // ---- añadimos el producto(.product-item) al carrito(.cart-items-container) como item(.cart-item)
 function addCartDiv(img,tittle,price) {
     if (isItemOnFile == false) {
@@ -80,8 +81,6 @@ function addCartDiv(img,tittle,price) {
     } else {alert("repetido")}
 }
 // --------
-
-
 
 // ---- comprobar que .cart-item no se repita
 let isItemOnFile = false
