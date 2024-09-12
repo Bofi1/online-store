@@ -34,7 +34,7 @@ for (let i = 0; i < productAddCartButton.length; i++) {
 
 
 
-// --- tomamos la informacion del producto que se seleccione
+// --- funciones cuando se presione el boton del elemento(.productItem)
 function addToCart(event) {
     let button = event.target
     let selector = button.parentElement
@@ -53,7 +53,11 @@ function addToCart(event) {
     addCartDiv(img,tittle,price)
 
     cartVisible()
+
+    cartUpdate()
+    
 }
+// ---------
 
 
 
@@ -71,14 +75,17 @@ function addCartDiv(img,tittle,price) {
     
             <div class="cart-item-barra">
                 <div class="minus">-</div>
+                <div class="num-item">1</div>
                 <div class="plus">+</div>
             </div>
         `
     } else {alert("repetido")}
 }
+// --------
 
 
-// ---- comprobar que cart-item no se repita
+
+// ---- comprobar que .cart-item no se repita
 let isItemOnFile = false
 function ItemOnFile(tittle) {
     let cartItem = document.getElementsByClassName("cart-item")
@@ -88,11 +95,29 @@ function ItemOnFile(tittle) {
         
         if (findName == tittle) {
             isItemOnFile = true
-        } 
-        
+        }    
     }
+}
+// -------
+
+function cartUpdate() {
+
+    let cartItem = document.getElementsByClassName("cart-item")
+    let minusItem = document.getElementsByClassName("minus")
+    let plusItem = document.getElementsByClassName("plus")
+
+    for (let i = 0; i < cartItem.length; i++) {
+        
+
+        minusItem[i].addEventListener("click",() => {alert("plus")})
+        plusItem[i].addEventListener("click",() => {alert("plus")})
+    }
+
     
 }
+
+
+
 
 
 
