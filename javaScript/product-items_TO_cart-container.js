@@ -43,8 +43,10 @@ for (let i = 0; i < productAddCartButton.length; i++) {
 
 
 
-// --- funciones cuando se presione el boton del elemento(.productItem)
+// --- funcion cuando se presione el boton del elemento(.productItem)
 function addToCart(event) {
+
+    // ----- aqui obtenemos la infomacion del producto al que se le presiono el boton "add cart" usando prompt event
     let button = event.target
     let selector = button.parentElement
 
@@ -56,22 +58,45 @@ function addToCart(event) {
     price = price.innerHTML.replace("$","").replace(",","").replace(".","")
     
     let img = selector.getElementsByClassName("product-img")[0].src
+    // -------
     
-    ItemOnFile(tittle)
+    isOnfile(img,tittle,price) // validacion
 
-    addCartDiv(img,tittle,price)
-
-    cartVisible()
+    cartVisible() // animacion cuando se agrege carrito
        
 }
 // ---------
 
 
 
+// ---- comprobar que un articulo no se repita en el carrito
+let cartProductsNameArray
+function isOnfile(img,tittle,price) {
+    let container =  document.getElementsByClassName("cart-items-container")
+    [0].childElementCount
+    let itemsTittle = document.getElementsByClassName("cart-item-tittle")
+    
+    let itemInCart = new Array(container)
+    for (let i = 0; i < container; i++) {
 
-// ---- añadimos el producto(.product-item) al carrito(.cart-items-container) como item(.cart-item)
+        itemInCart[i] = itemsTittle[i].innerHTML
+        
+    }
+    
+    if (itemInCart.includes(tittle) == true) {
+        itemAmountCart(container, tittle,itemInCart) // el producto ya esta en el carrito y solo se suma su cantidad
+    } else {
+        addCartDiv(img,tittle,price,container)  // el producto no se encuentra en el carrito ENTONCES se añade al carrito
+    }
+    
+}
+
+
+
+
+
+// ---- añadir el articulo al carrito
 function addCartDiv(img,tittle,price) {
-    if (isItemOnFile == false) {
         let cartItemsContainer = document.getElementsByClassName("cart-items-container")[0]
         let div = document.createElement("div")
         div.classList.add("cart-item")
@@ -87,27 +112,36 @@ function addCartDiv(img,tittle,price) {
                 <div class="plus">+</div>
             </div>
         `
-    } else {alert("repetido")}
 }
 // --------
 
 
 
 
+function itemAmountCart(container,tittle,itemInCart) {
+    let items = document.getElementsByClassName("num-item")
+    itemsArray = new Array(container)
 
-// ---- comprobar que .cart-item no se repita
-let isItemOnFile = false
-function ItemOnFile(tittle) {
-    let cartItem = document.getElementsByClassName("cart-item")
-
-    for (let i = 0; i < cartItem.length; i++) {
-        let findName = cartItem[i].getElementsByClassName("cart-item-tittle")[0].innerHTML
-        
-        if (findName == tittle) {
-            isItemOnFile = true
-        }    
+    for (let i = 0; i < container; i++) {
+        parseInt(itemsArray[i] = items[i].innerHTML);
     }
+
+    let findArray = itemInCart.indexOf(tittle)
+    itemsArray[findArray]++
+    items[findArray].innerHTML = itemsArray[findArray]
+
 }
+
+
+
+
+
+
+
+
+
+
+
 // -------
 
 
