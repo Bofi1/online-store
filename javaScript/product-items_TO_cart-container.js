@@ -1,4 +1,4 @@
-
+(() => {
 
 // ---- animacion al carrito
 let cartContainer = document.getElementById("cartContainer")
@@ -117,7 +117,7 @@ function addCartDiv(img,tittle,price) {
 
 
 
-
+// ----- se agrega cantidad del item ya existente en el carrito
 function itemAmountCart(container,tittle,itemInCart) {
     let items = document.getElementsByClassName("num-item")
     itemsArray = new Array(container)
@@ -132,18 +132,9 @@ function itemAmountCart(container,tittle,itemInCart) {
 
 }
 
-
-
-
-
-
-
-
-
-
-
 // -------
 
+})()
 
 
 
