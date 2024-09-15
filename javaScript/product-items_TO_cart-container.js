@@ -148,18 +148,27 @@ function grantTotal() {
     let item = document.getElementsByClassName("num-item")
     let price = document.getElementsByClassName("cart-item-price")
 
+    let grantTotalAmount = new Array(cartItemsContainer)
+
     for (let i = 0; i < cartItemsContainerCount; i++) {
 
 
-        console.log(parseInt(item[i].innerHTML));
-        console.log(price[i]);
-        
-        // console.log(parseInt(price[i].innerHTML));
+        // console.log(parseInt(item[i].innerHTML));
+        // console.log(parseInt(price[i].innerHTML.replace("$","").replace(",","")));
 
+        grantTotalAmount[i] = parseInt(item[i].innerHTML) * parseInt(price[i].innerHTML.replace("$","").replace(",",""))
         
-        
+        console.log(grantTotalAmount[i]);
         
     }
+
+    document.getElementById("grant-total").innerHTML = grantTotalAmount.reduce(myFunc);
+
+    function myFunc(a, b) {
+        return a + b;
+    }
+
+
 
 }
 
