@@ -82,6 +82,8 @@ function isOnfile(img,tittle,price) {
         itemInCart[i] = itemsTittle[i].innerHTML
         
     }
+
+    minus()
     
     if (itemInCart.includes(tittle) == true) {
         itemAmountCart(container, tittle,itemInCart,price) // el producto ya esta en el carrito y solo se suma su cantidad
@@ -141,6 +143,8 @@ function itemAmountCart(container,tittle,itemInCart) {
 
 
 
+
+// toma toda la info y la pone en el total
 function grantTotal() {
 
     let cartItemsContainer = document.getElementsByClassName("cart-items-container")[0]
@@ -148,32 +152,50 @@ function grantTotal() {
     let item = document.getElementsByClassName("num-item")
     let price = document.getElementsByClassName("cart-item-price")
 
-    let grantTotalAmount = new Array(cartItemsContainer)
+    let grantTotalAmount = new Array(cartItemsContainerCount)
 
     for (let i = 0; i < cartItemsContainerCount; i++) {
 
-
-        // console.log(parseInt(item[i].innerHTML));
-        // console.log(parseInt(price[i].innerHTML.replace("$","").replace(",","")));
-
-        grantTotalAmount[i] = parseInt(item[i].innerHTML) * parseInt(price[i].innerHTML.replace("$","").replace(",",""))
-        
-        console.log(grantTotalAmount[i]);
-        
+        grantTotalAmount[i] = parseInt(item[i].innerHTML) * parseInt(price[i].innerHTML.replace("$","").replace(",","")) // se multiplica la cantidad + el precio del item y se almacena en un array
+                
     }
 
+    // suma el valor de todas las variable del array y lo devuelve en un return
     document.getElementById("grant-total").innerHTML = grantTotalAmount.reduce(myFunc);
 
     function myFunc(a, b) {
         return a + b;
     }
-
-
-
 }
 
 
 
+
+// funcionalidad al boton -
+
+
+
+function minus() {
+
+    let minusButton = document.getElementsByClassName("minus")
+
+    for (let i = 0; i < minusButton.length; i++) {
+        let minusSave = minusButton[i]
+        minusSave.addEventListener("click", minusAction)
+        
+    }
+
+    function minusAction(event) {
+        let button = event.target
+        let parentButton = button.parentNode
+        let itemNum = parentButton.getElementsByClassName("num-item")[0]
+        console.log(itemNum);
+        
+    }
+    
+
+    
+}
 
 
 
