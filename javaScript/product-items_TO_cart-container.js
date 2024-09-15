@@ -1,4 +1,4 @@
-(() => {
+
 
 // ---- animacion al carrito
 let cartContainer = document.getElementById("cartContainer")
@@ -54,8 +54,8 @@ function addToCart(event) {
     let tittle = selector.getElementsByClassName("product-tittle")[0]
     tittle = tittle.innerHTML;
 
-    let price = selector.getElementsByClassName("product-price")[0]
-    price = price.innerHTML.replace("$","").replace(",","").replace(".","")
+    let price = selector.getElementsByClassName("product-price")[0].innerHTML
+    // price = price.innerHTML.replace("$","").replace(",","").replace(".","") //se quiten los signos
     
     let img = selector.getElementsByClassName("product-img")[0].src
     // -------
@@ -84,11 +84,13 @@ function isOnfile(img,tittle,price) {
     }
     
     if (itemInCart.includes(tittle) == true) {
-        itemAmountCart(container, tittle,itemInCart) // el producto ya esta en el carrito y solo se suma su cantidad
+        itemAmountCart(container, tittle,itemInCart,price) // el producto ya esta en el carrito y solo se suma su cantidad
     } else {
         addCartDiv(img,tittle,price,container)  // el producto no se encuentra en el carrito ENTONCES se añade al carrito
     }
     
+    grantTotal()
+
 }
 
 
@@ -112,12 +114,13 @@ function addCartDiv(img,tittle,price) {
                 <div class="plus">+</div>
             </div>
         `
+ 
 }
 // --------
 
 
 
-// ----- se agrega cantidad del item ya existente en el carrito
+// -----funcion que se agrega cantidad del item ya existente en el carrito
 function itemAmountCart(container,tittle,itemInCart) {
     let items = document.getElementsByClassName("num-item")
     itemsArray = new Array(container)
@@ -130,11 +133,35 @@ function itemAmountCart(container,tittle,itemInCart) {
     itemsArray[findArray]++
     items[findArray].innerHTML = itemsArray[findArray]
 
+
 }
 
 // -------
 
-})()
+
+
+
+function grantTotal() {
+
+    let cartItemsContainer = document.getElementsByClassName("cart-items-container")[0]
+    let cartItemsContainerCount = cartItemsContainer.childElementCount
+    let item = document.getElementsByClassName("num-item")
+    let price = document.getElementsByClassName("cart-item-price")
+
+    for (let i = 0; i < cartItemsContainerCount; i++) {
+
+
+        console.log(parseInt(item[i].innerHTML));
+        console.log(price[i]);
+        
+        // console.log(parseInt(price[i].innerHTML));
+
+        
+        
+        
+    }
+
+}
 
 
 
@@ -142,6 +169,10 @@ function itemAmountCart(container,tittle,itemInCart) {
 
 
 
+    
 
+    
+    
 
-
+    
+    
