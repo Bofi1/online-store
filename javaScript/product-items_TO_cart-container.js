@@ -23,7 +23,9 @@ function cartVisible() {
 //  ----------------
 
 
+plus()
 
+minus()
 
 
 
@@ -36,6 +38,27 @@ for (let i = 0; i < productAddCartButton.length; i++) {
     button.addEventListener("click", addToCart)
 }
 // ---------------------
+
+function plus() {
+    let plusButton = document.getElementsByClassName("plus")
+
+    for (let i = 0; i < plusButton.length; i++) {
+        let button = plusButton[i]
+        button.addEventListener("click", plusAction)
+    }
+}
+
+
+function minus() {
+    let minusButton = document.getElementsByClassName("minus")
+
+    for (let i = 0; i < minusButton.length; i++) {
+        let button = minusButton[i]
+        button.addEventListener("click", minusAction)
+    }
+}
+
+
 
 
 
@@ -59,41 +82,17 @@ function addToCart(event) {
     
     let img = selector.getElementsByClassName("product-img")[0].src
     // -------
+
+
+    itemOnfile(img,tittle,price)
     
-    isOnfile(img,tittle,price) // validacion
+    // addCartDiv(img,tittle,price) // validacion
 
     cartVisible() // animacion cuando se agrege carrito
+
        
 }
 // ---------
-
-
-
-// ---- comprobar que un articulo no se repita en el carrito
-let cartProductsNameArray
-function isOnfile(img,tittle,price) {
-    let container =  document.getElementsByClassName("cart-items-container")
-    [0].childElementCount
-    let itemsTittle = document.getElementsByClassName("cart-item-tittle")
-    
-    let itemInCart = new Array(container)
-    for (let i = 0; i < container; i++) {
-
-        itemInCart[i] = itemsTittle[i].innerHTML
-        
-    }
-
-    minus()
-    
-    if (itemInCart.includes(tittle) == true) {
-        itemAmountCart(container, tittle,itemInCart,price) // el producto ya esta en el carrito y solo se suma su cantidad
-    } else {
-        addCartDiv(img,tittle,price,container)  // el producto no se encuentra en el carrito ENTONCES se añade al carrito
-    }
-    
-    grantTotal()
-
-}
 
 
 
@@ -116,29 +115,9 @@ function addCartDiv(img,tittle,price) {
                 <div class="plus">+</div>
             </div>
         `
- 
+        cartUpdate()
 }
 // --------
-
-
-
-// -----funcion que se agrega cantidad del item ya existente en el carrito
-function itemAmountCart(container,tittle,itemInCart) {
-    let items = document.getElementsByClassName("num-item")
-    itemsArray = new Array(container)
-
-    for (let i = 0; i < container; i++) {
-        parseInt(itemsArray[i] = items[i].innerHTML);
-    }
-
-    let findArray = itemInCart.indexOf(tittle)
-    itemsArray[findArray]++
-    items[findArray].innerHTML = itemsArray[findArray]
-
-
-}
-
-// -------
 
 
 
@@ -169,33 +148,95 @@ function grantTotal() {
 }
 
 
+function itemOnfile(img,tittle,price) {
+    let cartCount = document.getElementsByClassName("cart-items-container")[0].childElementCount
+    console.log(cartCount);
 
+    let itemArray = new Array (cartCount)
+    console.log(itemArray);
+    
+    for (let i = 0; i < cartCount; i++) {
+        let item = document.getElementsByClassName("cart-item-tittle")
+        itemArray[i] = item[i].innerHTML
+        console.log(itemArray[i]);
+    }
+
+    console.log(tittle);
+    
+    if (itemArray.includes(tittle) == true) {
+        console.log("si esta");
+        
+    } else{ 
+        console.log("no esta");
+        addCartDiv(img,tittle,price)
+        
+    }
+
+    cartUpdate()
+
+}
+cartUpdate()
+
+
+// funcionalidad al boton +
+function plusAction(event) {
+     
+    let item = event.target.parentElement
+    // console.log(item);
+    let itemCount = parseInt(item.getElementsByClassName("num-item")[0].innerHTML)
+    let itemHTML = item.getElementsByClassName("num-item")[0]
+    itemHTML.innerHTML = itemCount++
+    // console.log(itemCount);
+
+    let itemCount2 = event.target.parentElement
+    // console.log(itemCount2);
+
+    itemCount2.getElementsByClassName("num-item")[0].innerHTML = itemCount
+
+    cartUpdate()
+                            
+}
 
 // funcionalidad al boton -
+function minusAction(event) {
+     
+    let item = event.target.parentElement
+    // console.log(item);
+    let itemCount = parseInt(item.getElementsByClassName("num-item")[0].innerHTML)
+    let itemHTML = item.getElementsByClassName("num-item")[0]
+    itemHTML.innerHTML = itemCount--
+    // console.log(itemCount);
 
+    let itemCount2 = event.target.parentElement
+    // console.log(itemCount2);
 
+    itemCount2.getElementsByClassName("num-item")[0].innerHTML = itemCount
 
-function minus() {
-
-    let minusButton = document.getElementsByClassName("minus")
-
-    for (let i = 0; i < minusButton.length; i++) {
-        let minusSave = minusButton[i]
-        minusSave.addEventListener("click", minusAction)
-        
-    }
-
-    function minusAction(event) {
-        let button = event.target
-        let parentButton = button.parentNode
-        let itemNum = parentButton.getElementsByClassName("num-item")[0]
-        console.log(itemNum);
-        
-    }
-    
-
-    
+    cartUpdate()
+                            
 }
+
+
+function cartUpdate() {
+    minus()
+
+    plus()
+
+    grantTotal()
+}
+
+
+
+    
+
+        
+
+    
+
+    
+    
+
+
 
 
 
