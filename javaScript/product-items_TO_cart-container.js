@@ -165,6 +165,7 @@ function itemOnfile(img,tittle,price) {
     
     if (itemArray.includes(tittle) == true) {
         console.log("si esta");
+        addNumCartDiv(tittle, itemArray)
         
     } else{ 
         console.log("no esta");
@@ -214,6 +215,21 @@ function minusAction(event) {
 
     cartUpdate()
                             
+}
+
+function addNumCartDiv(tittle,itemArray) {
+    let position = itemArray.indexOf(tittle)
+    console.log(position);
+    let itemSelected = document.getElementsByClassName("num-item")[position]
+    console.log(itemSelected);
+    // let sumItem = itemSelected.innerHTML++
+    itemSelected = itemSelected.innerHTML++
+    
+    
+    
+    
+    
+    
 }
 
 
