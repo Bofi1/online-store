@@ -110,9 +110,9 @@ function addCartDiv(img,tittle,price) {
             <span class="cart-item-price">${price}</span>
     
             <div class="cart-item-barra">
-                <div class="minus">-</div>
+                <div class="minus fa-solid fa-minus"></div>
                 <div class="num-item">1</div>
-                <div class="plus">+</div>
+                <div class="plus fa-solid fa-plus"></div>
             </div>
         `
         cartUpdate()
@@ -133,18 +133,25 @@ function grantTotal() {
 
     let grantTotalAmount = new Array(cartItemsContainerCount)
 
-    for (let i = 0; i < cartItemsContainerCount; i++) {
 
-        grantTotalAmount[i] = parseInt(item[i].innerHTML) * parseInt(price[i].innerHTML.replace("$","").replace(",","")) // se multiplica la cantidad + el precio del item y se almacena en un array
-                
+    if (cartItemsContainerCount == 0) {
+        document.getElementById("grant-total").innerHTML = 0 
+    } else{
+
+        for (let i = 0; i < cartItemsContainerCount; i++) {
+
+            grantTotalAmount[i] = parseInt(item[i].innerHTML) * parseInt(price[i].innerHTML.replace("$","").replace(",","")) // se multiplica la cantidad + el precio del item y se almacena en un array
+                    
+        }
+
+            // suma el valor de todas las variable del array y lo devuelve en un return
+        document.getElementById("grant-total").innerHTML = grantTotalAmount.reduce(myFunc);
+
+        function myFunc(a, b) {
+            return a + b;
+        }
     }
-
-    // suma el valor de todas las variable del array y lo devuelve en un return
-    document.getElementById("grant-total").innerHTML = grantTotalAmount.reduce(myFunc);
-
-    function myFunc(a, b) {
-        return a + b;
-    }
+    
 }
 
 
@@ -200,18 +207,22 @@ function plusAction(event) {
 
 // funcionalidad al boton -
 function minusAction(event) {
-     
-    let item = event.target.parentElement
-    // console.log(item);
-    let itemCount = parseInt(item.getElementsByClassName("num-item")[0].innerHTML)
-    let itemHTML = item.getElementsByClassName("num-item")[0]
-    itemHTML.innerHTML = itemCount--
-    // console.log(itemCount);
-
-    let itemCount2 = event.target.parentElement
-    // console.log(itemCount2);
-
-    itemCount2.getElementsByClassName("num-item")[0].innerHTML = itemCount
+    
+        let item = event.target.parentElement
+        // console.log(item);
+        let itemCount = parseInt(item.getElementsByClassName("num-item")[0].innerHTML)
+        let itemHTML = item.getElementsByClassName("num-item")[0]
+    
+        if (itemHTML.innerHTML == 1) {
+            let minusIcon = document.getElementsByClassName("minus")[0].innerHTML
+            console.log(minusIcon);
+            item.parentElement.remove()
+            
+        } else{       
+            itemHTML.innerHTML = itemCount--
+            let itemCount2 = event.target.parentElement
+            itemCount2.getElementsByClassName("num-item")[0].innerHTML = itemCount
+        }
 
     cartUpdate()
                             
@@ -222,14 +233,7 @@ function addNumCartDiv(tittle,itemArray) {
     console.log(position);
     let itemSelected = document.getElementsByClassName("num-item")[position]
     console.log(itemSelected);
-    // let sumItem = itemSelected.innerHTML++
     itemSelected = itemSelected.innerHTML++
-    
-    
-    
-    
-    
-    
 }
 
 
