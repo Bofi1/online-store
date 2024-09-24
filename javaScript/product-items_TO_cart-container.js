@@ -110,7 +110,7 @@ function addCartDiv(img,tittle,price) {
             <span class="cart-item-price">${price}</span>
     
             <div class="cart-item-barra">
-                <div class="minus fa-solid fa-minus"></div>
+                <div id="minus" class="minus fa-solid fa-trash"></div>
                 <div class="num-item">1</div>
                 <div class="plus fa-solid fa-plus"></div>
             </div>
@@ -216,12 +216,15 @@ function minusAction(event) {
         if (itemHTML.innerHTML == 1) {
             let minusIcon = document.getElementsByClassName("minus")[0].innerHTML
             console.log(minusIcon);
+            // console.log(document.getElementById("minus").className = "minus fa-solid fa-trash");
             item.parentElement.remove()
             
         } else{       
             itemHTML.innerHTML = itemCount--
             let itemCount2 = event.target.parentElement
             itemCount2.getElementsByClassName("num-item")[0].innerHTML = itemCount
+            // console.log(document.getElementById("minus").className = "minus fa-solid fa-minus");
+            
         }
 
     cartUpdate()
@@ -230,10 +233,29 @@ function minusAction(event) {
 
 function addNumCartDiv(tittle,itemArray) {
     let position = itemArray.indexOf(tittle)
-    console.log(position);
+    // console.log(position);
     let itemSelected = document.getElementsByClassName("num-item")[position]
-    console.log(itemSelected);
+    // console.log(itemSelected);
     itemSelected = itemSelected.innerHTML++
+}
+
+
+function trashMinus() {
+    let cartItemsContainer = document.getElementsByClassName("cart-items-container")[0]
+    let cartItemsContainerCount = cartItemsContainer.childElementCount
+
+    for (let i = 0; i < cartItemsContainerCount; i++) {
+
+        if (document.getElementsByClassName("num-item")[i].innerHTML == 1) {
+            document.getElementsByClassName("minus")[i].className = "minus fa-solid fa-trash"
+        } else {
+            document.getElementsByClassName("minus")[i].className = "minus fa-solid fa-minus"
+        }
+
+        // console.log(document.getElementsByClassName("num-item")[i].innerHTML);
+        
+        
+    }
 }
 
 
@@ -242,7 +264,10 @@ function cartUpdate() {
 
     plus()
 
+    trashMinus()
+
     grantTotal()
+
 }
 
 
