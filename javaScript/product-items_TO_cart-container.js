@@ -23,9 +23,9 @@ function cartVisible() {
 //  ----------------
 
 
-plus()
+// plus()
 
-minus()
+// minus()
 
 
 
@@ -39,6 +39,8 @@ for (let i = 0; i < productAddCartButton.length; i++) {
 }
 // ---------------------
 
+
+// ----- funcion de sumar y restar
 function plus() {
     let plusButton = document.getElementsByClassName("plus")
 
@@ -57,6 +59,7 @@ function minus() {
         button.addEventListener("click", minusAction)
     }
 }
+// -------------
 
 
 
@@ -98,7 +101,7 @@ function addToCart(event) {
 
 
 
-// ---- añadir el articulo al carrito
+// ---- funcion que añade el articulo al carrito
 function addCartDiv(img,tittle,price) {
         let cartItemsContainer = document.getElementsByClassName("cart-items-container")[0]
         let div = document.createElement("div")
@@ -154,7 +157,7 @@ function grantTotal() {
     
 }
 
-
+// checamos si el titutlo del producto seleccionado (usando event) esta en el carrito
 function itemOnfile(img,tittle,price) {
     let cartCount = document.getElementsByClassName("cart-items-container")[0].childElementCount
     console.log(cartCount);
@@ -170,20 +173,21 @@ function itemOnfile(img,tittle,price) {
 
     console.log(tittle);
     
+    // si el titulo se encuentra en el array del carrito, se agrega SOLO EL NUMERO
     if (itemArray.includes(tittle) == true) {
-        console.log("si esta");
+        // console.log("si esta");
         addNumCartDiv(tittle, itemArray)
-        
+    
+    // si titulo no se incluye en el array del carrito, SE AGREGA AL CARRITO
     } else{ 
-        console.log("no esta");
+        // console.log("no esta");
         addCartDiv(img,tittle,price)
         
     }
-
     cartUpdate()
-
 }
-cartUpdate()
+
+// cartUpdate()
 
 
 // funcionalidad al boton +
@@ -231,6 +235,7 @@ function minusAction(event) {
                             
 }
 
+//funcion que añade numero a la suma del item
 function addNumCartDiv(tittle,itemArray) {
     let position = itemArray.indexOf(tittle)
     // console.log(position);
@@ -240,6 +245,7 @@ function addNumCartDiv(tittle,itemArray) {
 }
 
 
+// funcion que hace que minus tengo icono de trash o minus
 function trashMinus() {
     let cartItemsContainer = document.getElementsByClassName("cart-items-container")[0]
     let cartItemsContainerCount = cartItemsContainer.childElementCount
@@ -250,11 +256,7 @@ function trashMinus() {
             document.getElementsByClassName("minus")[i].className = "minus fa-solid fa-trash"
         } else {
             document.getElementsByClassName("minus")[i].className = "minus fa-solid fa-minus"
-        }
-
-        // console.log(document.getElementsByClassName("num-item")[i].innerHTML);
-        
-        
+        }        
     }
 }
 
